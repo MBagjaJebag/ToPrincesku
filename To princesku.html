@@ -1,0 +1,427 @@
+<!doctype html>
+<html lang="id">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>Hi Princes 💌</title>
+<style>
+  :root{
+    --bg:#071427;
+    --accent:#ff5d7a;
+    --muted:#9fb0c8;
+    --glass: rgba(255,255,255,0.03);
+  }
+  *{box-sizing:border-box}
+  html,body{height:100%;margin:0}
+  body{
+    font-family:Inter, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+    background:
+      radial-gradient(circle at 10% 15%, #0d2433 0%, transparent 18%),
+      radial-gradient(circle at 90% 85%, #102538 0%, transparent 20%),
+      var(--bg);
+    color:#eef6ff;
+    display:flex;align-items:center;justify-content:center;
+    padding:20px;overflow:hidden;
+  }
+
+  /* canvas for hearts (global) */
+  canvas#loveCanvas{
+    position:fixed;left:0;top:0;width:100%;height:100%;z-index:0;pointer-events:none;
+    filter: drop-shadow(0 0 6px rgba(255,100,150,0.15));
+  }
+
+  /* main card */
+  .frame{
+    position:relative;z-index:3;
+    width:100%;max-width:840px;border-radius:16px;padding:28px;
+    background: linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));
+    border:1px solid rgba(255,255,255,0.03);
+    box-shadow: 0 18px 60px rgba(2,6,23,0.7);
+    min-height:360px;
+  }
+  .inner{display:flex;flex-direction:column;gap:12px;align-items:center}
+
+  h1{margin:0;font-size:22px;text-align:center}
+  .lead{color:var(--muted);margin:0;text-align:center}
+
+  /* splash (password) */
+  .splash{width:100%;max-width:680px;padding:18px;border-radius:12px;background:rgba(255,255,255,0.02)}
+  .cute-emoji{font-size:56px}
+  .pw-row{display:flex;gap:10px;margin-top:12px;width:100%}
+  input[type="password"]{
+    flex:1;padding:12px;border-radius:10px;border:1px solid rgba(255,255,255,0.04);
+    background:var(--glass);color:inherit;font-size:15px;
+  }
+  .hint{font-size:13px;color:var(--muted);text-align:center;margin-top:8px}
+
+  /* content */
+  .content{width:100%;max-width:760px;color:#f3f9ff;line-height:1.6;white-space:pre-line;font-size:15px}
+  .emoji-line{text-align:center;font-size:26px;margin:8px 0;color:#ffd9e6}
+
+  /* buttons */
+  .btn{background:var(--accent);color:#061722;padding:10px 14px;border-radius:10px;border:none;font-weight:700;cursor:pointer}
+  .btn-soft{background:transparent;border:1px solid rgba(255,255,255,0.06);color:var(--muted);padding:10px 14px;border-radius:10px;cursor:pointer}
+  .btn-row{display:flex;gap:12px;justify-content:center;margin-top:12px;flex-wrap:wrap}
+
+  /* page transitions */
+  .page{opacity:0;transform:translateY(8px);transition:opacity .45s ease, transform .45s ease;display:none}
+  .page.show{display:block;opacity:1;transform:none}
+  .fade-in{animation:fadeInUp .6s ease both}
+  @keyframes fadeInUp{from{opacity:0;transform:translateY(10px)} to{opacity:1;transform:none}}
+
+  /* paragraph stagger for page3 */
+  .para{opacity:0;transform:translateY(6px);transition:opacity .6s ease, transform .6s ease}
+  .para.show{opacity:1;transform:none}
+
+  /* small responsive */
+  @media (max-width:560px){
+    .frame{padding:18px}
+    h1{font-size:20px}
+  }
+</style>
+</head>
+<body>
+  <canvas id="loveCanvas"></canvas>
+
+  <div class="frame" role="main" aria-live="polite">
+    <div class="inner">
+      <!-- PAGE 1 -->
+      <div id="page1" class="page show" style="display:block;">
+        <div class="splash">
+          <div class="cute-emoji">👑✨</div>
+          <h1>Hai, ada pesan spesial nih!</h1>
+          <p class="lead">Masukin kata sandi biar masuk ya 💕</p>
+
+          <div style="margin-top:14px;width:100%;max-width:520px">
+            <div class="pw-row">
+              <input id="password" type="password" placeholder="Masukkan kata sandi..." aria-label="kata sandi" />
+              <button id="enterBtn" class="btn">Masuk</button>
+            </div>
+            <div class="hint" id="pwHint">Hint: Sebutan spesial nama kamu.</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- PAGE 2 -->
+      <div id="page2" class="page" aria-hidden="true" style="text-align:left;">
+        <h1 class="fade-in">Hi Princes, selamat datang 💖</h1>
+        <p class="lead fade-in">Baba punya sesuatu yang mau disampaikan</p>
+
+        <div class="emoji-line">💞 💘 🥰 💝 💖</div>
+
+        <div class="content fade-in" id="longtextArea">
+Gak terasa ya, kita udah sampai di titik ini. Padahal rasanya baru kemarin kita kenal. 
+Dibilang baru kenal juga nggak, tapi dibilang udah lama juga ngga. 
+Pokoknya selama aku kenal kamu, aku ngerasa kamu itu orang yang baik, pintar, lucu, gemesin, 
+dan selalu cantik di setiap keadaan.
+
+Apalagi kalau kamu senyum sambil prengut, itu manis banget—kadang aku sampai ikut senyum sendiri tiap ngeliatnya.
+
+Sayangnya, kamu sering bilang foto kamu jelek. Padahal menurut aku, justru di situ kamu kelihatan paling natural dan gemesin banget 
+ditambah kamu jago makeup makin luluh ini hatinya kalo liat. Apalagi waktu kamu baru bangun tidur, duh, lucunya nggak ada obat.
+
+Kamu nggak perlu khawatir soal foto-foto itu, aku selalu nyimpen semuanya baik-baik—anggap aja itu caraku buat “nyimpen” kamu di tiap momen.
+
+Hehe, jadi kayak curhat ya ini. Kamu jangan muak ya bacanya, tapi aku cuma pengen kamu tahu seberapa senangnya aku kenal kamu. 
+Kadang aku sadar juga sih, aku sering bikin kamu kesel atau bete. Aku takut kamu capek ngadepin aku yang kadang ngerecokin suasana hati kamu. 
+Tapi aku selalu berusaha kok buat bikin kamu seneng dan ngerasa dihargai, sekecil apa pun caranya.
+
+meskipun kadang terlihat menyebalkan, tapi tolong jangan jatuh cinta pada orang lain. 💗
+        </div>
+
+        <div class="emoji-line">💞 💘 🥰 💝 💖</div>
+
+        <div class="question" style="text-align:center;font-weight:700">Apa kamu penasaran slide selanjutnya?</div>
+        <div class="btn-row" style="margin-top:8px;">
+          <button id="yaBtn" class="btn">Ya, aku penasaran ✨</button>
+          <button id="tidakBtn" class="btn-soft">Tidak 😅</button>
+        </div>
+
+        <div class="btn-row" id="nextWrap" style="display:none;margin-top:14px;">
+          <button id="nextBtn" class="btn">Next ➜</button>
+        </div>
+      </div>
+
+      <!-- PAGE 3 -->
+      <div id="page3" class="page" aria-hidden="true" style="text-align:left;">
+        <h1 class="fade-in">Untuk Princes ❤️</h1>
+        <p class="lead fade-in">Baba mau jujur sama kamu...</p>
+
+        <div class="content" id="page3Text">
+          <p class="para">Aku pengen jujur soal perasaan aku.</p>
+          <p class="para">Sebenernya aku udah nyaman dan suka kalau bareng kamu. Udah lumayan juga aku nyimpen perasaan ini, dan beberapa kali pengen banget bilang sekarang juga. Tapi aku sengaja nahan karena pengen momen ini pas dan spesial. Aku pengen ngasih kamu sesuatu yang nggak biasa — momen yang berkesan buat kita berdua. Makanya aku niat rencanain ini semua pas ulang tahun kamu.</p>
+          <p class="para">Tapi di sisi lain, aku ngerasa sekarang ini bisa bikin kamu ngerasa digantung atau bingung, dan itu bukan niatku sama sekali. Kalau selama ini ada jarak atau kebingungan yang kubuat, maafkan aku. Aku nggak mau kasih harapan palsu. Yang kubuat hanyalah rencana supaya saat aku bilang, semuanya terasa tepat dan penuh makna.</p>
+          <p class="para">Tapi semoga hal yang aku lakuin sekarang, dengan membuat web sederhana ini, bisa membuat kamu ngerasa sedikit berkesan dan nggak terlalu lama buat menunggu. Perasaan ini serius. Aku sayang dan pengen kamu tahu itu dengan jelas — bukan sekadar kata lewat mulut.</p>
+          <p class="para">Sejujurnya, yang aku lakuin sekarang ini aku nggak tahu bakalan bikin kamu seneng atau kurang berkesan. Tapi jujur, aku takut kamu ngerasa kegantung dan malah bingung mau mengarah ke mana hubungan ini, yang ujung-ujungnya kamu mulai capek. Aku nggak mau hal itu terjadi, apalagi sampai kehilangan seseorang seperti kamu.</p>
+          <p class="para">Tapi nggak apa-apa kalau buat sekarang juga. Nanti di akhir bulan November ini, semoga nggak ada kendala saat aku ke sana, dan kita bisa merayakannya bareng dengan jajan yang buanyakk yaa, cintaa ❤️</p>
+
+          <div class="emoji-line" style="margin-top:8px;">💖 💞 💘</div>
+
+          <div class="question para" style="margin-top:12px;">Apakah Princes mau mengofficialkan hubungan ini?</div>
+          <div class="btn-row para" style="margin-top:10px;">
+            <button id="yesFinal" class="btn">Ya, aku mau 💞</button>
+            <button id="noFinal" class="btn-soft">Enggak dulu 😢</button>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+<script>
+/* ===== CONFIG ===== */
+const PASSWORD = "princes";
+const WA_NUMBER = "6282164657954";
+const MSG_YES = "Aku mau jadi pacar kamu 💖";
+const MSG_NO  = "Maaf aku belum siap nerima kamu sepenuhnya 😢";
+/* ================== */
+
+/* PAGE ELEMENTS */
+const page1 = document.getElementById('page1');
+const page2 = document.getElementById('page2');
+const page3 = document.getElementById('page3');
+const pw = document.getElementById('password');
+const enterBtn = document.getElementById('enterBtn');
+const pwHint = document.getElementById('pwHint');
+const yaBtn = document.getElementById('yaBtn');
+const tidakBtn = document.getElementById('tidakBtn');
+const nextWrap = document.getElementById('nextWrap');
+const nextBtn = document.getElementById('nextBtn');
+const yesFinal = document.getElementById('yesFinal');
+const noFinal = document.getElementById('noFinal');
+
+/* Page show helper */
+function showPage(fromEl, toEl){
+  if(fromEl){
+    fromEl.classList.remove('show');
+    setTimeout(()=> fromEl.style.display='none', 420);
+  }
+  toEl.style.display='block';
+  setTimeout(()=> toEl.classList.add('show'), 20);
+}
+
+/* PASSWORD logic */
+enterBtn.addEventListener('click', ()=>{
+  if(pw.value.trim().toLowerCase() === PASSWORD){
+    showPage(page1, page2);
+    startHearts('page2'); // moderate
+  } else {
+    pwHint.textContent = "Ups, salah. Coba ingat sebutan spesial kamu 🫶";
+    pw.value = ''; pw.focus();
+  }
+});
+pw.addEventListener('keyup', e => { if(e.key === 'Enter') enterBtn.click(); });
+
+/* PAGE2 interactions */
+yaBtn.addEventListener('click', ()=>{
+  nextWrap.style.display = 'flex';
+  yaBtn.disabled = true; tidakBtn.disabled = true;
+});
+tidakBtn.addEventListener('click', ()=>{
+  showPage(page2, page1);
+  pw.value = '';
+  stopHearts();
+});
+
+/* NEXT -> PAGE3 */
+nextBtn.addEventListener('click', ()=>{
+  showPage(page2, page3);
+  startHearts('page3'); // denser & mixed
+  staggerParagraphs();
+});
+
+/* WA open */
+function openWA(msg){
+  const url = `https://wa.me/${WA_NUMBER}?text=${encodeURIComponent(msg)}`;
+  window.open(url,'_blank');
+}
+yesFinal.addEventListener('click', ()=> { openWA(MSG_YES); burstConfetti(); });
+noFinal.addEventListener('click', ()=> { openWA(MSG_NO); });
+
+/* ===== HEARTS (Canvas) - Mixed System: Burst + Rain + Glow ===== */
+const canvas = document.getElementById('loveCanvas');
+const ctx = canvas.getContext('2d');
+let W=0, H=0;
+function resize(){ W = canvas.width = window.innerWidth; H = canvas.height = window.innerHeight; }
+window.addEventListener('resize', resize); resize();
+
+const hearts = []; // active particles
+const rain = [];   // falling hearts
+let animId = null;
+let spawnIntervals = []; // store intervals to clear per page mode
+
+function rand(min,max){ return Math.random()*(max-min)+min; }
+
+/* heart drawing (simple bezier heart) */
+function drawHeart(x,y,size,rgba){
+  ctx.save();
+  ctx.translate(x,y);
+  ctx.scale(size/24, size/24);
+  ctx.beginPath();
+  ctx.moveTo(0,0);
+  ctx.bezierCurveTo(-6,-6,-12,-1,0,10);
+  ctx.bezierCurveTo(12,-1,6,-6,0,0);
+  ctx.fillStyle = rgba;
+  ctx.shadowBlur = 10;
+  ctx.shadowColor = rgba;
+  ctx.fill();
+  ctx.restore();
+}
+
+/* spawn burst hearts (pancaran dari center) */
+function spawnBurst(count, soft=false){
+  for(let i=0;i<count;i++){
+    const angle = rand(-Math.PI, Math.PI);
+    const speed = soft ? rand(0.6,1.1) : rand(1.2,3.0);
+    const size = soft ? rand(6,14) : rand(10,26);
+    const life = soft ? rand(80,160) : rand(100,260);
+    hearts.push({
+      x: W/2 + rand(-20,20),
+      y: H/2 + rand(-20,20),
+      vx: Math.cos(angle)*speed,
+      vy: Math.sin(angle)*speed - rand(0.4,1.4),
+      size, life, opacity:1,
+      colorOffset: Math.random()*40 // subtle hue variance
+    });
+  }
+}
+
+/* spawn rain hearts (falling hearts from top) */
+function spawnRain(count){
+  for(let i=0;i<count;i++){
+    const x = rand(0, W);
+    rain.push({
+      x, y: -20 - rand(0,200),
+      vy: rand(0.6,1.6),
+      size: rand(8,18),
+      life: 400 + rand(0,300),
+      opacity:1,
+      sway: rand(0.2,0.9),
+      colorOffset: Math.random()*40
+    });
+  }
+}
+
+/* animate loop */
+function animate(){
+  ctx.clearRect(0,0,W,H);
+  // draw burst hearts
+  for(let i=hearts.length-1;i>=0;i--){
+    const p = hearts[i];
+    p.x += p.vx;
+    p.y += p.vy;
+    p.vy += 0.02; // gentle gravity
+    p.life--;
+    if(p.life < 30) p.opacity = p.life/30;
+    const r = Math.floor(230 + (p.colorOffset%20));
+    const g = Math.floor(80 + (p.colorOffset%30));
+    const b = Math.floor(140 + (p.colorOffset%40));
+    drawHeart(p.x, p.y, p.size, `rgba(${r},${g},${b},${p.opacity})`);
+    if(p.life <= 0) hearts.splice(i,1);
+  }
+  // draw rain hearts
+  for(let i=rain.length-1;i>=0;i--){
+    const rhr = rain[i];
+    rhr.x += Math.sin((performance.now()/1000 + i)*0.6) * rhr.sway;
+    rhr.y += rhr.vy;
+    rhr.life--;
+    if(rhr.y > H + 40 || rhr.life <= 0) { rain.splice(i,1); continue; }
+    if(rhr.life < 60) rhr.opacity = rhr.life/60;
+    const rr = Math.floor(235 + (rhr.colorOffset%15));
+    const gg = Math.floor(90 + (rhr.colorOffset%30));
+    const bb = Math.floor(160 + (rhr.colorOffset%40));
+    drawHeart(rhr.x, rhr.y, rhr.size, `rgba(${rr},${gg},${bb},${rhr.opacity})`);
+  }
+
+  animId = requestAnimationFrame(animate);
+}
+
+/* start modes: page1 (gentle), page2 (moderate), page3 (dense) */
+function clearSpawnIntervals(){
+  spawnIntervals.forEach(id => clearInterval(id));
+  spawnIntervals = [];
+}
+function stopAll(){
+  clearSpawnIntervals();
+  if(animId) cancelAnimationFrame(animId);
+  animId = null;
+  hearts.length = 0; rain.length = 0;
+  ctx.clearRect(0,0,W,H);
+}
+
+/* start hearts for specific page */
+function startHearts(mode){
+  stopAll();
+  // always run animation
+  if(!animId) animate();
+  if(mode === 'page1'){
+    // subtle: small occasional bursts + tiny rain
+    spawnBurst(3, true);
+    spawnRain(6);
+    spawnIntervals.push(setInterval(()=> spawnBurst(2, true), 800));
+    spawnIntervals.push(setInterval(()=> spawnRain(2), 900));
+  } else if(mode === 'page2'){
+    // moderate: regular bursts + light rain
+    spawnBurst(10, false);
+    spawnRain(10);
+    spawnIntervals.push(setInterval(()=> spawnBurst(4, false), 450));
+    spawnIntervals.push(setInterval(()=> spawnRain(3), 600));
+  } else if(mode === 'page3'){
+    // dense: more bursts and more rain (but still limited)
+    spawnBurst(14, false);
+    spawnRain(18);
+    spawnIntervals.push(setInterval(()=> spawnBurst(6, false), 360));
+    spawnIntervals.push(setInterval(()=> spawnRain(5), 420));
+  }
+}
+
+/* small confetti (emoji) */
+function burstConfetti(){
+  const emojis = ['💖','🎉','✨','🌟','💝','🎊'];
+  const root = document.createElement('div');
+  root.style.position='fixed';root.style.left='0';root.style.top='0';
+  root.style.width='100%';root.style.height='100%';root.style.pointerEvents='none';root.style.zIndex=9999;
+  document.body.appendChild(root);
+  for(let i=0;i<36;i++){
+    const el = document.createElement('div');
+    el.textContent = emojis[Math.floor(Math.random()*emojis.length)];
+    el.style.position='absolute';
+    el.style.left = (50 + rand(-40,40)) + 'vw';
+    el.style.top  = (30 + rand(-20,20)) + 'vh';
+    el.style.fontSize = (12 + Math.random()*36) + 'px';
+    el.style.opacity = '1';
+    el.style.transform = `translateY(-10vh) rotate(${rand(0,360)}deg)`;
+    el.style.transition = `transform ${1200+Math.random()*900}ms cubic-bezier(.2,.9,.3,1), opacity 1000ms ease`;
+    root.appendChild(el);
+    setTimeout(()=> {
+      el.style.transform = `translateY(${80 + Math.random()*40}vh) rotate(${rand(180,900)}deg) translateX(${rand(-30,30)}px)`;
+      el.style.opacity = '0';
+    }, 60 + Math.random()*160);
+    setTimeout(()=> el.remove(), 2200 + Math.random()*600);
+  }
+  setTimeout(()=> root.remove(), 3200);
+}
+
+/* paragraph stagger reveal for page3 */
+function staggerParagraphs(){
+  const paras = Array.from(document.querySelectorAll('#page3 .para'));
+  paras.forEach((p, idx) => setTimeout(()=> p.classList.add('show'), 320 + idx*420));
+}
+
+/* Accessibility: Esc returns to start */
+document.addEventListener('keydown', (e)=>{
+  if(e.key === 'Escape'){
+    showPage(page2, page1);
+    pw.value = '';
+    stopAll();
+  }
+});
+
+/* Ensure small hearts on initial load (page1) */
+document.addEventListener('DOMContentLoaded', ()=> {
+  // start subtle hearts for page1
+  startHearts('page1');
+});
+</script>
+</body>
+</html>
